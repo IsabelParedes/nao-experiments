@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+  </head>
+  <body>
+     <script src="./socket.io.js"></script>
+     <script>
+        let socket = io.connect("nao:nao@nao.local:80",
+            { resource: "libs/qimessaging/2/socket.io",
+              'force new connection': true }
+        );
+     </script>
+     <button onclick="func();">Click me</button>
+  </body>
+</html>
