@@ -6,10 +6,12 @@
 **   - Laurent LEC    <llec@aldebaran-robotics.com>
 **
 */
-import { io } from './socket.io';
-export function QiSession(connected, disconnected, host) {
+// import { io } from './socket.io';
+function QiSession(connected, disconnected, host) {
     console.log("DBG Emile qim about to connect w/17");
-    var _socket = io.connect("http://" + (host ? host : window.location.host), { resource: "libs/qimessaging/2/socket.io",
+    var _socket = io.connect(
+        "nao:nao@nao.local:80", 
+        { resource: "libs/qimessaging/2/socket.io",
         'force new connection': true });
     console.log("DBG Emile qim connecting..");
     var _dfd = new Array();
@@ -115,8 +117,12 @@ export function QiSession(connected, disconnected, host) {
     _socket.on('connect', function () {
         console.log("DBG Emile qim connect");
         if (connected) {
-            connected(_self);
+            // connected(_self);
+            console.log("DBG Isabel already connected");
+
         }
     });
     console.log("DBG Emile qim done with init");
+
+    return this;
 }

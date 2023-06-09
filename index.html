@@ -5,12 +5,21 @@
   </head>
   <body>
      <script src="./socket.io.js"></script>
+     <script src="./qimessaging.js"></script>
      <script>
-        let socket = io.connect("nao:nao@nao.local:80",
-            { resource: "libs/qimessaging/2/socket.io",
-              'force new connection': true }
-        );
+        
+        let qs = QiSession("nao.local");
+
+        async function saySomething()
+        {
+          let tts = await qs.service("ALTextToSpeech");
+          let eyes = (await qs.service("ALLeds")).rasta(3.0);
+
+          await tts.say("crazy eyes");
+          await eyes;
+          await tts.say("all done now");
+        };
      </script>
-     <button onclick="func();">Click me</button>
+     <button onclick="saySomething()">Click me</button>
   </body>
 </html>
