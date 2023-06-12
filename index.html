@@ -14,10 +14,15 @@
         {
           let tts = await qs.service("ALTextToSpeech");
           let eyes = (await qs.service("ALLeds")).rasta(3.0);
+          let motion = await qs.service("ALMotion");
 
-          await tts.say("crazy eyes");
+          // await tts.say("crazy eyes");
           await eyes;
-          await tts.say("all done now");
+          await motion.wakeUp();
+          // await motion.moveInit();
+          // await motion.post.moveTo(0.5,0,0);
+          await motion.rest();
+          // await tts.say("all done now");
         };
      </script>
      <button onclick="saySomething()">Click me</button>
